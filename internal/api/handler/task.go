@@ -20,12 +20,12 @@ func NewTaskHandler(service interfaces.TaskService) *TaskHandler {
 }
 
 // CreateTask godoc
-// @Summary Create a new task
-// @Description Create a new task with the input payload
+// @Summary Create a new payment
+// @Description Create a new payment with the input payload
 // @Tags tasks
 // @Accept json
 // @Produce json
-// @Param task body task.Request true "Task Request"
+// @Param payment body task.Request true "Task Request"
 // @Success 201 {object} response.Response
 // @Failure 400 {object} response.Response
 // @Failure 500 {object} response.Response
@@ -56,11 +56,11 @@ func (th *TaskHandler) CreateTask(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, errRes)
 			return
 		}
-		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to create task", nil, err.Error())
+		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to create payment", nil, err.Error())
 		c.JSON(http.StatusInternalServerError, errRes)
 		return
 	}
-	successRes := response.ClientResponse(http.StatusCreated, "the task was successfully created", res, nil)
+	successRes := response.ClientResponse(http.StatusCreated, "the payment was successfully created", res, nil)
 	c.JSON(http.StatusCreated, successRes)
 }
 
@@ -99,8 +99,8 @@ func (th *TaskHandler) ListTasks(c *gin.Context) {
 }
 
 // GetTask godoc
-// @Summary Get a task by ID
-// @Description Get details of a task by its ID
+// @Summary Get a payment by ID
+// @Description Get details of a payment by its ID
 // @Tags tasks
 // @Produce json
 // @Param id path string true "Task ID"
@@ -116,22 +116,22 @@ func (th *TaskHandler) GetTask(c *gin.Context) {
 			c.JSON(http.StatusOK, errRes)
 			return
 		}
-		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to get task", nil, err.Error())
+		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to get payment", nil, err.Error())
 		c.JSON(http.StatusInternalServerError, errRes)
 		return
 	}
-	successRes := response.ClientResponse(http.StatusOK, "the task details", res, nil)
+	successRes := response.ClientResponse(http.StatusOK, "the payment details", res, nil)
 	c.JSON(http.StatusOK, successRes)
 }
 
 // UpdateTask godoc
-// @Summary Update a task by ID
-// @Description Update details of a task by its ID
+// @Summary Update a payment by ID
+// @Description Update details of a payment by its ID
 // @Tags tasks
 // @Accept json
 // @Produce json
 // @Param id path string true "Task ID"
-// @Param task body task.Request true "Task Request"
+// @Param payment body task.Request true "Task Request"
 // @Success 204 {object} response.Response
 // @Failure 400 {object} response.Response
 // @Failure 404 {object} response.Response
@@ -155,22 +155,22 @@ func (th *TaskHandler) UpdateTask(c *gin.Context) {
 	err := th.taskService.UpdateTask(c.Request.Context(), id, req)
 	if err != nil {
 		if errors.Is(err, task.ErrorNotFound) {
-			errRes := response.ClientResponse(http.StatusNotFound, "task not found", nil, err.Error())
+			errRes := response.ClientResponse(http.StatusNotFound, "payment not found", nil, err.Error())
 			c.JSON(http.StatusNotFound, errRes)
 			return
 
 		}
-		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to update task", nil, err.Error())
+		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to update payment", nil, err.Error())
 		c.JSON(http.StatusInternalServerError, errRes)
 		return
 	}
-	successRes := response.ClientResponse(http.StatusNoContent, "the task was successfully updated", nil, nil)
+	successRes := response.ClientResponse(http.StatusNoContent, "the payment was successfully updated", nil, nil)
 	c.JSON(http.StatusNoContent, successRes)
 }
 
 // DeleteTask godoc
-// @Summary Delete a task by ID
-// @Description Delete a task by its ID
+// @Summary Delete a payment by ID
+// @Description Delete a payment by its ID
 // @Tags tasks
 // @Produce json
 // @Param id path string true "Task ID"
@@ -183,21 +183,21 @@ func (th *TaskHandler) DeleteTask(c *gin.Context) {
 	err := th.taskService.DeleteTask(c.Request.Context(), id)
 	if err != nil {
 		if errors.Is(err, task.ErrorNotFound) {
-			errRes := response.ClientResponse(http.StatusNotFound, "task not found", nil, err.Error())
+			errRes := response.ClientResponse(http.StatusNotFound, "payment not found", nil, err.Error())
 			c.JSON(http.StatusNotFound, errRes)
 			return
 		}
-		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to delete task", nil, err.Error())
+		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to delete payment", nil, err.Error())
 		c.JSON(http.StatusInternalServerError, errRes)
 		return
 	}
-	successRes := response.ClientResponse(http.StatusNoContent, "the task was successfully deleted", nil, nil)
+	successRes := response.ClientResponse(http.StatusNoContent, "the payment was successfully deleted", nil, nil)
 	c.JSON(http.StatusNoContent, successRes)
 }
 
 // DoneTask godoc
-// @Summary Mark a task as done
-// @Description Mark a task as done by its ID
+// @Summary Mark a payment as done
+// @Description Mark a payment as done by its ID
 // @Tags tasks
 // @Produce json
 // @Param id path string true "Task ID"
@@ -210,14 +210,14 @@ func (th *TaskHandler) DoneTask(c *gin.Context) {
 	err := th.taskService.DoneTask(c.Request.Context(), id)
 	if err != nil {
 		if errors.Is(err, task.ErrorNotFound) {
-			errRes := response.ClientResponse(http.StatusNotFound, "task not found", nil, err.Error())
+			errRes := response.ClientResponse(http.StatusNotFound, "payment not found", nil, err.Error())
 			c.JSON(http.StatusNotFound, errRes)
 			return
 		}
-		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to mark task as done", nil, err.Error())
+		errRes := response.ClientResponse(http.StatusInternalServerError, "failed to mark payment as done", nil, err.Error())
 		c.JSON(http.StatusInternalServerError, errRes)
 		return
 	}
-	successRes := response.ClientResponse(http.StatusNoContent, "the task was successfully marked as done", nil, nil)
+	successRes := response.ClientResponse(http.StatusNoContent, "the payment was successfully marked as done", nil, nil)
 	c.JSON(http.StatusNoContent, successRes)
 }

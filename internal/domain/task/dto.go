@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	ErrorNotFound      = errors.New("task not found")
+	ErrorNotFound      = errors.New("payment not found")
 	ErrorInvalidTitle  = errors.New("invalid title")
 	ErrorInvalidDate   = errors.New("invalid date format")
 	ErrorInvalidStatus = errors.New("invalid status")

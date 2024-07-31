@@ -57,11 +57,11 @@ paths:
     post:
       consumes:
       - application/json
-      description: Create a new task with the input payload
+      description: Create a new payment with the input payload
       parameters:
       - description: Task Request
         in: body
-        name: task
+        name: payment
         required: true
         schema:
           $ref: '#/definitions/task.Request'
@@ -80,12 +80,12 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
-      summary: Create a new task
+      summary: Create a new payment
       tags:
       - tasks
   /tasks/{id}:
     delete:
-      description: Delete a task by its ID
+      description: Delete a payment by its ID
       parameters:
       - description: Task ID
         in: path
@@ -107,11 +107,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
-      summary: Delete a task by ID
+      summary: Delete a payment by ID
       tags:
       - tasks
     get:
-      description: Get details of a task by its ID
+      description: Get details of a payment by its ID
       parameters:
       - description: Task ID
         in: path
@@ -133,13 +133,13 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
-      summary: Get a task by ID
+      summary: Get a payment by ID
       tags:
       - tasks
     put:
       consumes:
       - application/json
-      description: Update details of a task by its ID
+      description: Update details of a payment by its ID
       parameters:
       - description: Task ID
         in: path
@@ -148,7 +148,7 @@ paths:
         type: string
       - description: Task Request
         in: body
-        name: task
+        name: payment
         required: true
         schema:
           $ref: '#/definitions/task.Request'
@@ -171,12 +171,12 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
-      summary: Update a task by ID
+      summary: Update a payment by ID
       tags:
       - tasks
   /tasks/{id}/done:
     put:
-      description: Mark a task as done by its ID
+      description: Mark a payment as done by its ID
       parameters:
       - description: Task ID
         in: path
@@ -198,7 +198,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
-      summary: Mark a task as done
+      summary: Mark a payment as done
       tags:
       - tasks
 swagger: "2.0"

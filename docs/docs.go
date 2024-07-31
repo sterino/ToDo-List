@@ -64,7 +64,7 @@ const docTemplate = `{
                 }
             },
             "post": {
-                "description": "Create a new task with the input payload",
+                "description": "Create a new payment with the input payload",
                 "consumes": [
                     "application/json"
                 ],
@@ -74,15 +74,15 @@ const docTemplate = `{
                 "tags": [
                     "tasks"
                 ],
-                "summary": "Create a new task",
+                "summary": "Create a new payment",
                 "parameters": [
                     {
                         "description": "Task Request",
-                        "name": "task",
+                        "name": "payment",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/task.Request"
+                            "$ref": "#/definitions/payment.Request"
                         }
                     }
                 ],
@@ -110,14 +110,14 @@ const docTemplate = `{
         },
         "/tasks/{id}": {
             "get": {
-                "description": "Get details of a task by its ID",
+                "description": "Get details of a payment by its ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "tasks"
                 ],
-                "summary": "Get a task by ID",
+                "summary": "Get a payment by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -149,7 +149,7 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "description": "Update details of a task by its ID",
+                "description": "Update details of a payment by its ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -159,7 +159,7 @@ const docTemplate = `{
                 "tags": [
                     "tasks"
                 ],
-                "summary": "Update a task by ID",
+                "summary": "Update a payment by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -170,11 +170,11 @@ const docTemplate = `{
                     },
                     {
                         "description": "Task Request",
-                        "name": "task",
+                        "name": "payment",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/task.Request"
+                            "$ref": "#/definitions/payment.Request"
                         }
                     }
                 ],
@@ -206,14 +206,14 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "description": "Delete a task by its ID",
+                "description": "Delete a payment by its ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "tasks"
                 ],
-                "summary": "Delete a task by ID",
+                "summary": "Delete a payment by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -247,14 +247,14 @@ const docTemplate = `{
         },
         "/tasks/{id}/done": {
             "put": {
-                "description": "Mark a task as done by its ID",
+                "description": "Mark a payment as done by its ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "tasks"
                 ],
-                "summary": "Mark a task as done",
+                "summary": "Mark a payment as done",
                 "parameters": [
                     {
                         "type": "string",
@@ -301,7 +301,7 @@ const docTemplate = `{
                 }
             }
         },
-        "task.Request": {
+        "payment.Request": {
             "type": "object",
             "properties": {
                 "active_at": {
