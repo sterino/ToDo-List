@@ -9,8 +9,8 @@ import (
 	"todo-list/internal/config"
 )
 
-func ConnectDatabase(cfg config.Config) (psqlUrl string, store *sqlx.DB, err error) {
-	psqlUrl = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+func ConnectDatabase(cfg config.Config) (store *sqlx.DB, err error) {
+	psqlUrl := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		cfg.DBUser, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBName)
 
 	log.Printf("url: %v", psqlUrl)

@@ -1,23 +1,19 @@
 package db
 
 import (
-	"errors"
-	"github.com/golang-migrate/migrate/v4"
-	_ "github.com/golang-migrate/migrate/v4/source/file"
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	_ "github.com/mattes/migrate/database/postgres"
+	"github.com/pressly/goose/v3"
 )
 
-func Migrate(url string) (err error) {
-	migrations, err := migrate.New("file://migrations/postgres", url)
-	if err != nil {
-		return
+func Migrate(db *sqlx.DB) error {
+	if err := goose.SetDialect("postgres"); err != nil {
+		return err
 	}
-	if err = migrations.Up(); err != nil {
-		if errors.Is(err, migrate.ErrNoChange) {
-			return nil
-		}
-		return
+
+	if err := goose.Up(db.DB, "migrations/postgres"); err != nil {
+		return err
 	}
-	return
+
+	return nil
 }

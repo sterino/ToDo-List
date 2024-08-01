@@ -15,11 +15,11 @@ import (
 )
 
 func InitializeAPI(cfg config.Config) (*http.Server, error) {
-	url, sqlxDB, err := db.ConnectDatabase(cfg)
+	sqlxDB, err := db.ConnectDatabase(cfg)
 	if err != nil {
 		return nil, err
 	}
-	err = db.Migrate(url)
+	err = db.Migrate(sqlxDB)
 	if err != nil {
 		return nil, err
 	}
